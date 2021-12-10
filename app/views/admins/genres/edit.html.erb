@@ -1,0 +1,12 @@
+<h2>ジャンル編集</h2>
+ <%= form_with model: @genre, local: true do |f| %>
+ <div>
+   <table class="table">
+     <tr>
+       <th>ジャンル</th>
+       <th><%= f.text_field :true, autofocus: true %></th>
+       <th><%= f.submit "変更を保存", class: "btn btn-success btn-sm btn-block update genre" %></th>
+       <% end %>
+     </tr>
+   </table>
+ </div>
