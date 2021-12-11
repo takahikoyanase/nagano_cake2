@@ -1,5 +1,5 @@
 <h2>商品一覧</h2>
-<%= link_to "", new_admins_item_path, class: "btn btn-primary" %>
+<%= link_to "+", new_admins_item_path, class: "btn btn-outline-secondary btn-block fas fa-plus-circle" %>
  <table class="table">
    <thead>
      <tr>
@@ -17,10 +17,11 @@
       <td><%= items_path(item.id) %></td>
       <td><%= item.name %></td>
       <td><%= item.price %></td>
-      <td><%= genre.id %></td>
+      <td><%= genre.name %></td>
       <td><%= item.is_active %></td>
      </tr>
      <% end %>
+     <%= paginate @items %>
    </tbody>
 
 

@@ -1,23 +1,36 @@
 <h2>新規登録</h2>
- <% if item.errors.any? %>
+ <% if @item.errors.any? %>
   <%= item.errors.count %>error prohibited this obj from being saved
   <% item.errors.full_messages.each do |message| %>
    <%= message %>
   <% end %>
  <% end %>
 
- <%= form_with model: @item, local: true do |f| %>
+ <%= form_with model: @item, url: new_admins_item_path, method: :post, local: true do |f| %>
  <table class="table">
  <th>商品画像</th>
-  <%= attachment_image_tag @item, :image, :fll, 80, 80, fallback: "no_image.jpeg" %>
+  <%= f.attachment_field :image_id %>
  <th>商品名</th>
   <%= f.text_field :name %>
  <th>商品説明</th>
   <%= f.text_area :introduction %>
  <th>ジャンル</th>
+  <div>
+  <%= form.label :genres %>
+  <%= form.select :genres_id %>
+  </div>
  <th>税抜価格</th>
   <%= f.text_field :price %>
  <th>販売ステータス</th>
+  <%= form.label :is_active %>
+  <div>
+   <%= form.radio_button :is_active, true %>
+   <%= form.label :is_active, '販売中', value: true %>
+  </div>
+  <div>
+   <%= form.radio_button :is_active, false %>
+   <%= form.label :is_active, '販売停止中', value: false %>
+  </div>
  </table>
  <%= f.submit '新規登録', class: "btn btn-success btn-sm btn-block create item" %>
  <% end %>
