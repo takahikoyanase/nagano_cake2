@@ -7,10 +7,10 @@ class Admins::ItemsController < ApplicationController
     @genres = Genre.all
   end
   def create
-    @item = Items.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
       flash[:success] = '投稿しました'
-      redirect_to items_url
+      redirect_to admins_items_path
     else
       render :new
     end
@@ -20,6 +20,7 @@ class Admins::ItemsController < ApplicationController
   end
   def edit
     @item = Item.find(params[:id])
+    @genre = Genre.all
     render :edit
   end
   def update
@@ -31,6 +32,6 @@ class Admins::ItemsController < ApplicationController
 
   private
   def item_params
-   params.require(:item).permit(:name, :image_id, :introduction, :price, :is_active, :genre_id)
+   params.require(:item).permit(:name, :image, :introduction, :price, :is_active, :genre_id)
   end
 end

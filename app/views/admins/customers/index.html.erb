@@ -1,0 +1,25 @@
+<h2>会員一覧</h2>
+ <table class="table table-hover table inverse">
+  <thead>
+   <tr>
+    <th>会員ID</th>
+    <th>氏名</th>
+    <th>メールアドレス</th>
+    <th>ステータス</th>
+   </tr>
+  </thead>
+
+  <tbody>
+   <% @customers.each do |customer| %>
+   <tr>
+     <td><%= customer.admin.id %></td>
+     <td><%= link_to customer.admin.name, admins_customers_path(customer) %></td>
+     <td><%= customer.admin.email %></td>
+     <td><%= customer.admin.is_active %></td>
+   </tr>
+   <% end %>
+   <%= paginate @customers %>
+  </tbody>
+</table>
+
+  </tbody>
