@@ -1,12 +1,18 @@
-<h2>商品一覧</h2>
- <% @items.each do |item| %>
- <div class="form-group row">
-  <div><%= link_to public_item_path(item) do %>
-   <div><%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpeg" %> </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h2>商品一覧</h2>
+      <% @items.each do |item| %>
+      <div class="form-group row">
+       <div><%= link_to item_path(item) do %>
+        <div><%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpeg" %> </div>
+       </div>
+       <% end %>
+       <div><%= item.name %></div>
+       <div><%= item.price %></div>
+      </div>
+      <% end %>
+      <%= paginate @items %>
+    </div>
   </div>
-  <% end %>
-  <div><%= item.name %></div>
-  <div><%= item.price %></div>
- </div>
-<% end %>
-<%= paginate @items %>
+</div>

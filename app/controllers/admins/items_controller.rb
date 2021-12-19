@@ -12,6 +12,7 @@ class Admins::ItemsController < ApplicationController
       flash[:success] = '投稿しました'
       redirect_to admins_items_path
     else
+      @genres = Genre.all
       render :new
     end
   end
