@@ -6,49 +6,57 @@
        <thead>
         <tr>
          <td>購入者</td>
-         <td><%= link_to customer.last_name, admins_customer_path %><%= link_to customer.first_name, admins_customer_path %></td>
+         <td><%= link_to @customer.last_name, admins_customer_path %><%= link_to @customer.first_name, admins_customer_path %></td>
         </tr>
         <tr>
          <td>注文日</td>
-         <td><%= order.created_at %></td>
+         <td><%= @order.created_at %></td>
         </tr>
         <tr>
          <td>配送先</td>
-         <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+         <td><%= @order.postal_code %><%= @order.address %><%= @order.name %></td>
         </tr>
         <tr>
          <td>支払方法</td>
-         <td><%= order.payment_method %></td>
+         <td><%= @order.payment_method %></td>
         </tr>
         <tr>
          <td>注文ステータス</td>
          <td><%= f.collection_select :order_id, @orders, :id, :status, prompt: "選択してください" %></td>
-         <td><%= link_to "更新", admins_order_path(@order), method: :patch, class: "btn btn-success btn-sm btn-block update" %></td>
+         <td><%= link_to "更新", admins_order_path(@order), method: :patch, class: "btn btn-success btn-sm update" %></td>
         </tr>
      </thead>
      <tbody>
         <tr>
-         <td>商品名</td>
-         <td>単価（税込）</td>
-         <td>数量</td>
-         <td>小計</td>
-         <td>製作ステータス</td>
+         <th>商品名</th>
+         <th>単価（税込）</th>
+         <th>数量</th>
+         <th>小計</th>
+         <th>製作ステータス</th>
         </tr>
+        <% @sum = 0 %>
         <%= @order_details.each do |order_detail| %>
         <tr>
-         <td><%= @item.name %></td>
-         <td><%= (order_detail.praice*1.1).floor %></td>
+         <td><%= order_detail.item.name %></td>
+         <td><%= order_detail.item.with_tax_price %></td>
          <td><%= order_detail.amount %></td>
-         <td><%= (order_detail.price*1.1).floor*imte.amount %></td>
+         <td><%= order_detail.subtotal %> <% @sum += order_detail.subtotal %></td>
          <td>
-          <%= f.collection_select :order_detail_id, @order_details, :id, :making_status, prompt: "選択してください" %><%= link_to "更新", admins_order_detail_path(@order_detail), method: :patch, class: "btn btn-success btn-sm btn-block update" %>
+          <%= f.collection_select :order_detail_id, @order_details, :id, :making_status, prompt: "選択してください" %><%= link_to "更新", admins_order_detail_path(@order_detail), method: :patch, class: "btn btn-success btn-sm update" %>
          </td>
         </tr>
         <% end %>
+
+        <tr>
+        <th>商品合計</th>
+         <td><%= @sum %></td>
+        <th>送料</th>
+         <td><%= 800 %></td>
+        <th>請求金額</th>
+         <td><%= @sum + 800 %></td>
+        </tr>
      </tbody>
     </table>
    </div>
   </div>
 </div>
-
-

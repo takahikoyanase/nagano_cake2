@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_12_18_053736) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -96,14 +97,10 @@ ActiveRecord::Schema.define(version: 2021_12_18_053736) do
     t.string "postal_code"
     t.string "address"
     t.string "name"
+    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "customer_id"
-  end
-
-  create_table "publics", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

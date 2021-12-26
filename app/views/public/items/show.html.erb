@@ -14,18 +14,18 @@
      </h5>
 
      <h5>
-       ¥<%= @item.price %>(税込)
+       ¥<%= @item.with_tax_price %>(税込)
      </h5>
 
-     <%= form_with model: @item, url: cart_items_path, metod: :post, local: true do |f| %>
-      <%= f.hidden_field :amount, value: "数量" %>
+     <%= form_with model: @cart_item, url: cart_items_path, metod: :post, local: true do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
       <div class="form-group row">
       <h5>
        <%= f.select :amount, [1, 2, 3, 4, 5, 6, 7, 8, 8, 9, 10], {include_blank: '個数選択'} %>
       </h5>
 
       <div>
-       <%= link_to "カートに入れる", cart_items_path, class:  "btn btn-success btn-sm" %>
+       <%= f.submit "カートに入れる",class:  "btn btn-success btn-sm" %>
       </div>
       </div>
      <% end %>

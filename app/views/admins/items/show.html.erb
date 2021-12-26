@@ -1,10 +1,12 @@
 <div class="container">
+ <h2>商品詳細</h2>
   <div class="row">
-    <div class="col-md-9 offset-md-1">
-     <h2>商品詳細</h2>
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
       <label for="inputImage"></label>
        <%= attachment_image_tag @item, :image, :fill, 100, 100, fallback: "no_image.jpeg" %>
+    </div>
 
+    <div class="col-md-6">
       <div class="form-group row">
        <div>
        <label for="inputName">商品名</label>
@@ -35,7 +37,7 @@
         <%= @item.is_active %>
        </div>
       </div>
-      <%= link_to "編集する", edit_admins_item_path(@item), class: "btn btn-success btn-sm btn-block edit" %>
+      <%= link_to "編集する", edit_admins_item_path(@item), class: "btn btn-success btn-sm " %>
  　</div>
 　</div>
 </div>

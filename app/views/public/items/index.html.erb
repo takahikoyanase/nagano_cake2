@@ -4,7 +4,7 @@
       <h2>商品一覧</h2>
       <% @items.each do |item| %>
       <div class="form-group row">
-       <div><%= link_to item_path(item) do %>
+       <div><%= link_to item_path(item) do %></div>
         <div><%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpeg" %> </div>
        </div>
        <% end %>

@@ -1,67 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-1">
-      <h2>注文履歴詳細</h2>
+　    <h2>注文履歴一覧</h2>
+  　    <div class="form-row">
+    　  <div class="form-group col-12">
         <table class="table">
-          <td class="form-row">
-          <td class="form-group col-6">
-          <tr>注文情報</tr>
           <tr>
-            <td>注文日</td>
-            <td><%= order.created_at %></td>
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
           </tr>
-          <tr>
-            <td>配送先</td>
-            <td><%= order.full_address %></td>
-          </tr>
-          <tr>
-            <td>支払方法</td>
-            <td><%= order.payment_method %></td>
-          </tr>
-          <tr>
-            <td>ステータス</td>
-            <td><%= order.status %></td>
-          </tr>
-          </td>
-
-          <td class="form-group col-6" >
-          <tr>請求情報</tr>
-          <tr>
-            <td>商品合計</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>配送料</td>
-            <td><%= order.shipping_cost %></td>
-          </tr>
-          <tr>
-            <td>ご請求額</td>
-            <td></td>
-          </tr>
-          </td>
-          </td>
-
-          <td class="form-row">
-          <td class="form-group col-12">
-          <tr>注文内容</tr>
-          <tr>
-            <th>商品</th>
-            <th>単価（税込）</th>
-            <th>個数</th>
-            <th>小計</th>
-          </tr>
-
           <% @orders.each do |order| %>
           <tr>
-            <td><%= order.order_details.item_id %></td>
-            <td><%= order.order_details.price %></td>
-            <td><%= order.order_details.amount %></td>
-            <td><%=           %></td>
+            <td><%= order.created_at %></td>
+            <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+            <td></td>
+            <td><%= order.total_payment %>  </td>
+            <td><%= order.status %></td>
+            <td><%= link_to "表示する", order_path(current_customer.id), class: "btn btn-primary" %></td>
           </tr>
           <% end %>
-          </td>
-          </td>
         </table>
+      </div>
       </div>
     </div>
   </div>
+</div>
